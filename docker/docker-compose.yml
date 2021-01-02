@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: "laravel-app"
+    volumes:
+      - ../phpsample:/phpsample/
+    ports:
+      - "80:80"
+    tty: true
+
+  db:
+    image: mysql:latest
+    hostname: mysql
+    environment:
+      MYSQL_DATABASE: "test"
+      MYSQL_USER: "user"
+      MYSQL_PASSWORD: "password"
+      MYSQL_ROOT_PASSWORD: "root"
+    ports:
+      - "3306:3306"
